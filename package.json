@@ -1,6 +1,6 @@
 {
   "name": "touch-events",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Touch events using PEP",
   "main": "lib/index.js",
   "jspm": {
@@ -25,6 +25,8 @@
       "add-module-exports"
     ]
   },
+  "registry": "npm",
+  "jspmPackage": true,
   "repository": {
     "type": "git",
     "url": "https://www.github.com/Doodle3D/Touch-Events.git"
