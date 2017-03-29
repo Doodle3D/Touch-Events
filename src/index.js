@@ -56,7 +56,7 @@ function eventRegonizer(event) {
     case 'pointerdown': {
       const listener = listeners.find(({ DOMNode }) => DOMNode === event.target);
 
-      if (!listener) return;
+      if (!listener) break;
 
       const pointer = { event, start: event, preEvents: [event], listener };
       if (listener.state.pointers.length >= 1) {
@@ -91,7 +91,7 @@ function eventRegonizer(event) {
       const pointer = pointers[pointerId];
       // end when pointer is not known
       // this can happen when a pointer started outside a known dom node
-      if (!pointer) return;
+      if (!pointer) break;
 
       // update pointer
       pointer.event = event;
@@ -146,7 +146,7 @@ function eventRegonizer(event) {
 
       // end when pointer is not known
       // this can happen when a pointer started outside the screen
-      if (!pointer) return;
+      if (!pointer) break;
 
       // update pointer
       pointer.event = event;
@@ -204,6 +204,9 @@ function eventRegonizer(event) {
     default:
       break;
   }
+
+  const listener = listeners.find(({ DOMNode }) => DOMNode === event.target);
+  if (listener) listener.eventDispatcher.dispatchEvent(event);
 }
 
 function onblur() {
@@ -226,17 +229,19 @@ function onblur() {
 window.addEventListener('pointerdown', eventRegonizer);
 window.addEventListener('pointermove', eventRegonizer);
 window.addEventListener('pointerup', eventRegonizer);
+window.addEventListener('pointerover', eventRegonizer);
+window.addEventListener('pointerout', eventRegonizer);
 window.addEventListener('pointerleave', eventRegonizer);
 window.addEventListener('pointercancel', eventRegonizer);
-window.addEventListener('contextmenu', eventRegonizer);
 window.addEventListener('blur', onblur);
 
 export function __unload() {
   window.removeEventListener('pointerdown', eventRegonizer);
   window.removeEventListener('pointermove', eventRegonizer);
   window.removeEventListener('pointerup', eventRegonizer);
+  window.removeEventListener('pointerover', eventRegonizer);
+  window.removeEventListener('pointerout', eventRegonizer);
   window.removeEventListener('pointerleave', eventRegonizer);
   window.removeEventListener('pointercancel', eventRegonizer);
-  window.removeEventListener('contextmenu', eventRegonizer);
   window.removeEventListener('blur', onblur);
 }
