@@ -63,16 +63,12 @@ function eventRegonizer(event) {
         // end current event because after a new pointer is added a new event is triggered
         const events = getCurrentEvents(listener);
 
+        const type = `${listener.state.currentEvent}end`;
         if (listener.state.currentEvent === 'drag') {
-          listener.eventDispatcher.dispatchEvent({
-            type: `${listener.state.currentEvent}end`,
-            event: events[0]
-          });
+          const [event] = events;
+          listener.eventDispatcher.dispatchEvent({ type, event });
         } else {
-          listener.eventDispatcher.dispatchEvent({
-            type: `${listener.state.currentEvent}end`,
-            events
-          });
+          listener.eventDispatcher.dispatchEvent({ type, events });
         }
       }
 
