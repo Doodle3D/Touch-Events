@@ -16,7 +16,8 @@ const listeners = [];
 const pointers = {};
 
 export default function createListener(DOMNode) {
-  const listener = listeners.find(_listener => _listener.DOMNode === DOMNode);
+  // Check if already listening to DOM Node
+  const listener = listeners.find(listener => listener.DOMNode === DOMNode);
   if (listener) return listener.DOMNode;
 
   // Set touch action to none of DOM element
