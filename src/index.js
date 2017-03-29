@@ -212,6 +212,10 @@ function onblur() {
   }
 
   for (const listener of listeners) {
+    if (['drag', 'seconddrag', 'multitouch'].includes(listener.state.currentEvent)) {
+      listener.eventDispatcher.dispatchEvent({ type: `${listener.state.currentEvent}end`, event });
+    }
+
     listener.state = {
       currentEvent: 'idle',
       pointers: []
