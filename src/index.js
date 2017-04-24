@@ -104,6 +104,9 @@ function eventRegonizer(event) {
         case 'idle-drag':
           const { preEvents, start } = pointer;
 
+          // add current position to predrags
+          pointer.preEvents.push(event);
+
           // when event is idle check if pointer has moved more then DRAG_THRESHOLD
           const deltaX = start.clientX - event.clientX;
           const deltaY = start.clientY - event.clientY;
@@ -118,9 +121,6 @@ function eventRegonizer(event) {
               event: start,
               preEvents
             });
-          } else {
-            // if pointer has not moved more then DRAG_THRESHOLD add current position to predrags
-            pointer.preEvents.push(event);
           }
           break;
         case 'drag':
