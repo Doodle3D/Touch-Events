@@ -1,6 +1,6 @@
 {
   "name": "touch-events",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Touch events using PEP",
   "main": "lib/index.js",
   "jspm": {
