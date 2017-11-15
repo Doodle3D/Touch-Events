@@ -1,51 +1,36 @@
 {
   "name": "touch-events",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Touch events using PEP",
   "main": "lib/index.js",
-  "jspm": {
-    "directories": {
-      "lib": "src"
-    },
-    "name": "touch-events",
-    "main": "index.js",
-    "dependencies": {
-      "eventdispatcher.js": "npm:eventdispatcher.js@^0.0.2",
-      "pepjs": "npm:pepjs@^0.4.2"
-    },
-    "devDependencies": {
-      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.17"
-    }
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ],
-    "plugins": [
-      "add-module-exports"
-    ]
-  },
-  "registry": "npm",
-  "jspmPackage": true,
+  "module": "module/index.js",
+  "esnext": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://www.github.com/Doodle3D/Touch-Events.git"
   },
-  "format": "esm",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "jspm install",
-    "prepublish": "npm run build",
-    "build": "babel src --out-dir lib"
+    "build": "npm run build:main && npm run build:module ",
+    "build:main": "BABEL_ENV=main babel src -s -d lib",
+    "build:module": "BABEL_ENV=module babel src -s -d module"
   },
-  "author": "Casper@Doodle3D",
+  "author": "Casper @ Doodle3D",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.23.0",
-    "babel-core": "^6.23.1",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-preset-es2015": "^6.22.0",
-    "jspm": "^0.17.0-beta.40"
+    "babel-plugin-inline-import": "^2.0.6",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-cli": "6.24.1",
+    "babel-core": "6.24.1",
+    "babel-loader": "7.0.0",
+    "babel-plugin-add-module-exports": "0.2.1",
+    "babel-preset-es2015": "6.24.1"
   },
   "dependencies": {
     "eventdispatcher.js": "0.0.2",
