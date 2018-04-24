@@ -5,7 +5,7 @@ const CONFIG = {
   DRAG_THRESHOLD: 10
 };
 export function setConfig(config) {
-  for (const key of CONFIG) {
+  for (const key in CONFIG) {
     if (config[key] !== undefined) {
       CONFIG[key] = config[key];
     }
